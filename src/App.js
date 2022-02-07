@@ -1,5 +1,5 @@
 import './App.css';
-import { Route,BrowserRouter,Switch } from 'react-router-dom';
+import {BrowserRouter,Route,Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 
