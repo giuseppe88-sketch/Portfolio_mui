@@ -9,6 +9,16 @@ import {FaBootstrap,FaAngular,FaHtml5,FaCss3Alt} from 'react-icons/fa'
 import {DiMongodb} from 'react-icons/di';
 import {SiTypescript} from 'react-icons/si'
 
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+    container: {
+         transition: "transform 0.15s ease-in-out",
+         "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
+      
+    }
+  });
+
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
@@ -16,10 +26,12 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
+
 export default function About() {
+    const classes = useStyles()
 
 
-  return <Box sx={{height:900}}>
+  return <Box>
         <Container maxWidth="sm"
          >
                 <Box display="flex" flexDirection="row" justifyContent="center"> 
@@ -43,71 +55,72 @@ export default function About() {
             </Grid>
             </Grid>
         </Container>
-         
+         <Container className={classes.container}>
         <Box display="flex" flexDirection="row" justifyContent="center"> 
                 <Typography variant="h4" sx={{color:"white", mt:10}}>My Skills</Typography>
                </Box>
                <Grid 
                 container
                 item
-                 rowSpacing={3}
+                rowSpacing={3}
                 columnSpacing={{ xs:2, sm:2, md:3}}
-                columns={{ xs: 4, md: 12 }}
+                columns={{ xs: 6, md: 12 }}
                 sx={{mt:5}}
                 >
                 <IconContext.Provider value={{ style: { marginTop:2,verticalAlign: 'middle',fontSize: '30px',color: "rgb(0, 123, 255)"} }}>
                  <Grid item xs={3}>
                      
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <IoLogoReact /><Typography sx={{ml:1,mt:0.6}}>React</Typography></Box>
                          </Item>
                      
                  </Grid>
                  
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <IoLogoJavascript /><Typography sx={{ml:1,mt:0.6}}>Javascript</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <IoLogoNodejs /><Typography sx={{ml:1,mt:0.6}}>Node.Js</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <IoLogoNodejs /><Typography sx={{ml:1,mt:0.6}}>Express.js</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <FaBootstrap /><Typography sx={{ml:1,mt:0.6}}>Bootstrap</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <IoLogoReact /><Typography sx={{ml:1,mt:0.6}}>React Native</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <DiMongodb /><Typography sx={{ml:1,mt:0.6}}>MongoDB</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <FaAngular /><Typography sx={{ml:1,mt:0.6}}>Angular</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <FaHtml5 /><Typography sx={{ml:1,mt:0.6}}>Html5</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <FaCss3Alt /><Typography sx={{ml:1,mt:0.6}}>CSS3</Typography></Box></Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item>Material UI</Item>
+                     <Item className={classes.container}>Material UI</Item>
                  </Grid>
                  <Grid item xs={3}>
-                     <Item><Box display="flex" flexDirection="row" justifyContent="center">
+                     <Item className={classes.container}><Box display="flex" flexDirection="row" justifyContent="center">
                          <SiTypescript /><Typography sx={{ml:1,mt:0.6}}>Typescript</Typography></Box></Item>
                  </Grid>
                  </IconContext.Provider>
                </Grid>
+               </Container>
         </Box>
 }

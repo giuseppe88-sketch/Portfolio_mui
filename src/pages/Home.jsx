@@ -6,7 +6,7 @@ import { Container,Grid } from '@mui/material';
 import Introduction from './Introduction';
 import MyWork from './MyWork';
 import About from './About';
-
+import Contact from './Contact';
 const darkTheme = createTheme({
     palette: {
       mode: 'dark',
@@ -32,6 +32,7 @@ export default function Home() {
     <Introduction />
     <MyWork />
     <About/>
+    <Contact />
   </ThemeProvider>
   </> 
 }
