@@ -28,6 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.primary,
     fontSize:90,
     margin:75,
+    marginBottom:30,
     
   }));
 
@@ -60,7 +61,7 @@ className={classes.container}
                 flexDirection="column"
                 alignItems="center"
                 >
-                 <Link href="mailto:giuseppeadamo908@gmail.com"><Item className={classes.container}><MdEmail /></Item><Typography variant="h7" sx={{color:"white"}}><i>giuseppeadamo908@gmail.com</i></Typography></Link>
+                 <Link href="mailto:giuseppeadamo908@gmail.com"><Item className={classes.container}><MdEmail /></Item><Typography variant="h7" sx={{color:"white",textAlign:"center"}}><i>giuseppeadamo908@gmail.com</i></Typography></Link>
          </Box>
          </Grid>
 
