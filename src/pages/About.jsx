@@ -31,7 +31,7 @@ export default function About() {
     const classes = useStyles()
 
 
-  return <Box>
+  return <Box id="about">
         <Container maxWidth="sm"
          >
                 <Box display="flex" flexDirection="row" justifyContent="center"> 

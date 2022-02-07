@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar,Toolbar } from '@mui/material';
+import { AppBar,Toolbar} from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -11,7 +11,10 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['About Me', 'My Projects', 'Contact'];
+
+import {Link} from 'react-scroll'
+
+// const pages = ['About Me', 'My Projects', 'Contact'];
 
 
 const darkTheme = createTheme({
@@ -81,11 +84,22 @@ export default function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+               <Link to="about" smooth={true} duration={1000}>
+                 <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">About me</Typography>
                 </MenuItem>
-              ))}
+                </Link>
+                <Link to="projects" smooth={true} duration={1000}>
+                <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Projects</Typography>
+                </MenuItem>
+                </Link>
+                <Link to="contact" smooth={true} duration={1000}>
+                <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Contact</Typography>
+                </MenuItem>
+              </Link>
+              
             </Menu>
           </Box>
           <Typography
@@ -97,15 +111,31 @@ export default function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            <Link to="about" smooth={true} duration={1000}>
               <Button
-                key={page}
+                
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                About me
+              </Button></Link>
+              <Link to="projects" smooth={true} duration={1000}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                Projects
+                </Button>
+              </Link>
+              <Link to="contact" smooth={true} duration={1000}>
+              <Button
+                
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Contact
               </Button>
-            ))}
+              </Link>
           </Box>
         </Toolbar>
       </Container>

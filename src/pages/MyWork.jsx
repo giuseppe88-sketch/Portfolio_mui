@@ -33,7 +33,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function MyWork() {
     const classes = useStyles()
 
-     return <Box >
+     return <Box id="projects">
      <Container
               maxWidth="lg"
      >
