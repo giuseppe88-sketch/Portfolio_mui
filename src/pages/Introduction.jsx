@@ -22,9 +22,9 @@ export default function Introduction() {
         </Box>
         <Box width="50%" margin="auto" sx={{mt:10}}>
         <Container align="center">
-        <Link href="https://github.com/giuseppe88-sketch"><GitHubIcon sx={{color:grey[500]}} fontSize="large" /></Link>
-       <Link href="https://www.linkedin.com/in/giuseppe-adamo-798900223/"><LinkedInIcon  color="primary" fontSize="large" sx={{ml:2}}/></Link> 
-        <Link href="https://twitter.com/home"><TwitterIcon color="primary" fontSize="large" sx={{ml:2}}/></Link>
+        <Link href="https://github.com/giuseppe88-sketch"><GitHubIcon sx={{color:grey[400]}} fontSize="large" /></Link>
+       <Link href="https://www.linkedin.com/in/giuseppe-adamo-798900223/"><LinkedInIcon  color="primary" fontSize="large" sx={{ml:2,color:grey[400]}}/></Link> 
+        <Link href="https://twitter.com/home"><TwitterIcon color="primary" fontSize="large" sx={{ml:2,color:grey[400]}}/></Link>
        </Container> 
        </Box>
   </>;
