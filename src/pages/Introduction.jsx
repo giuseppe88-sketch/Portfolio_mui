@@ -12,7 +12,7 @@ export default function Introduction() {
       
     <Box display="flex" width="50%" justifyContent="center" alignItems="center" m="auto" sx={{mt:20}}>
               <Box sx={{mr:10}}>
-              <Typography variant="h3"sx={{color:'white'}}>Hi I am Giuseppe</Typography>
+              <Typography variant="h3"sx={{color:'white'}}>Hey, I am Giuseppe</Typography>
               <Typography variant="h6" sx={{color:'white',mt:1}}>an Italian Web Developer based in Berlin.</Typography>
 
               </Box>
