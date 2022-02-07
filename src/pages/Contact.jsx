@@ -34,7 +34,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Contact() {
     const classes = useStyles()
 
-  return <Box sx={{height:750}} id="contact">
+  return <Box sx={{height:750,mb:5}} id="contact">
 <Container maxWidth="fluid"
 className={classes.container}
 
