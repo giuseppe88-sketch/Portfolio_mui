@@ -174,20 +174,20 @@ export default function MyWork() {
       <CardMedia
         component="img"
         height="260"
-        image="https://ik.imagekit.io/7lqiq1zm3ks/Screenshot_from_2021-07-22_12-42-32_vfvZhYncG.png?ik-sdk-version=javascript-1.4.3&updatedAt=1643993587368"
-        alt="My Movies Application"
+        image="https://ik.imagekit.io/7lqiq1zm3ks/Screenshot_from_2022-02-10_17-02-55_ESudviqaJ1J.png?ik-sdk-version=javascript-1.4.3&updatedAt=1644509142944"
+        alt="Time Seven App"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-        My Movies Application
+        Time Seven App
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        Whitin this project I create the server-side and client-side for my application called myMovies, Users will be able to sign up, update their personal information and get access to info about movies, director and genres.
+        Within this freelance project I create the server-side and the client-side for an application called Time Seven. I created this project using MERN and Material UI.
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <Button size="small"><Link href="https://time-seven.netlify.app/" underline="none">See the project</Link></Button>
+
       </CardActions>
     </Card></Item>
         </Grid>
