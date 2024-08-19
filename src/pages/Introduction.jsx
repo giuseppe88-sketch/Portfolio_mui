@@ -17,7 +17,7 @@ export default function Introduction() {
 
               </Box>
             <Box>
-               <img src="https://ik.imagekit.io/7lqiq1zm3ks/IMG_1419a_ikoAWbRgxF.JPG?ik-sdk-version=javascript-1.4.3&updatedAt=1643972203775" width="100%"></img>
+               <img src="https://ik.imagekit.io/7lqiq1zm3ks/IMG_1419a_ikoAWbRgxF.JPG?ik-sdk-version=javascript-1.4.3&updatedAt=1643972203775" alt="intro-imagekit" width="100%"></img>
             </Box>
         </Box>
         <Box width="50%" margin="auto" sx={{mt:10}}>

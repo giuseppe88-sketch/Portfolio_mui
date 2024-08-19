@@ -50,7 +50,7 @@ className={classes.container}
             </Box>  
         <Grid 
             container
-            columns={10}
+            // columns={10}
             columns={{ xs: 2,md:10}}
             alignItems="center"
             sx={{mt:5}}> 

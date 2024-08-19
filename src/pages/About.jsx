@@ -46,7 +46,7 @@ export default function About() {
             
             >
             <Grid item xs={4}>
-            <Box><img src="https://ik.imagekit.io/7lqiq1zm3ks/IMG_0914_DH1PP8NaR.JPG?ik-sdk-version=javascript-1.4.3&updatedAt=1644003243333" width="400" className="pic-about"></img></Box>
+            <Box><img src="https://ik.imagekit.io/7lqiq1zm3ks/IMG_0914_DH1PP8NaR.JPG?ik-sdk-version=javascript-1.4.3&updatedAt=1644003243333" alt="imagekit" width="400" className="pic-about"></img></Box>
 
             </Grid>
             <Grid item xs={7}>
