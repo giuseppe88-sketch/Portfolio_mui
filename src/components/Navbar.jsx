@@ -1,9 +1,8 @@
 import React from "react";
 import { AppBar, Toolbar } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import { Link, Element } from "react-scroll";
+import { Link } from "react-scroll";
 import logo from "../asset/logo.png";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
@@ -11,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -161,14 +161,23 @@ export default function Navbar() {
                 }}
               >
                 <Link to="introduction" smooth={true} duration={1000}>
-                  <img
+                  <motion.img
                     src={logo}
+                    alt="logo"
                     style={{
                       width: "90px",
                       padding: "10px",
                       marginTop: "10px",
                     }}
-                    alt="logo"
+                    // Animation when hovering over the logo
+                    whileHover={{
+                      rotate: 360, // Rotate the logo 360 degrees on hover
+                      scale: 1.2, // Scale up slightly on hover
+                    }}
+                    transition={{
+                      duration: 0.5, // Animation duration
+                      ease: "easeInOut", // Easing function
+                    }}
                   />
                 </Link>
               </Box>

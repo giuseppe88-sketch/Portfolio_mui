@@ -8,7 +8,7 @@ import { IconContext } from "react-icons";
 import { FaBootstrap, FaAngular, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { DiMongodb } from "react-icons/di";
 import { SiTypescript } from "react-icons/si";
-
+import HexagonalPrism from "../components/HexagonLogo";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
@@ -18,12 +18,11 @@ const useStyles = makeStyles({
   },
 });
 
-
 export default function About() {
   const classes = useStyles();
 
   return (
-    <Box id="about" height="100vh" mb={14}>
+    <Box id="about" height="100vh" mb={24}>
       <Container maxWidth="sm">
         <Box display="flex" flexDirection="row" justifyContent="center">
           <Typography variant="h2" sx={{ color: "white", mt: 10 }}>
@@ -35,12 +34,7 @@ export default function About() {
         <Grid container item columns={{ xs: 4, md: 12 }}>
           <Grid item xs={4}>
             <Box>
-              <img
-                src="https://ik.imagekit.io/7lqiq1zm3ks/IMG_0914_DH1PP8NaR.JPG?ik-sdk-version=javascript-1.4.3&updatedAt=1644003243333"
-                alt="imagekit"
-                width="400"
-                className="pic-about"
-              ></img>
+              <HexagonalPrism />
             </Box>
           </Grid>
           <Grid item xs={7} alignItems="center">
@@ -58,11 +52,11 @@ export default function About() {
               In 2021, I graduated from CareerFoundry after completing an
               8-month Bootcamp. Shortly after, I secured my first junior
               position at a cloud-based software solutions company, where I
-              worked for 2 years. 
+              worked for 2 years.
               <br></br>
-              Over those years, I've honed my skills as a
-              front-end developer while also gaining experience in mobile
-              development and backend technologies.
+              Over those years, I've honed my skills as a front-end developer
+              while also gaining experience in mobile development and backend
+              technologies.
             </Typography>
           </Grid>
         </Grid>
