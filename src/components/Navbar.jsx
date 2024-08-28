@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <React.Fragment>
-      <AppBar position="sticky" sx={{ background: "black" }}>
+      <AppBar position="sticky" width="100%" sx={{ background: "black" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

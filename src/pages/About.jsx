@@ -19,35 +19,60 @@ const useStyles = makeStyles({
 });
 
 export default function About() {
-  const classes = useStyles();
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <Box id="about" height="100vh" mb={24}>
+    <Box id="about" height="100%" mb={isMobile ? 4 : 10}>
       <Container maxWidth="sm">
         <Box display="flex" flexDirection="row" justifyContent="center">
-          <Typography variant="h2" sx={{ color: "white", mt: 10 }}>
+          <Typography
+            variant={isMobile ? "h3" : "h2"}
+            sx={{ color: "white", mt: 8 }}
+          >
             About Me
           </Typography>
         </Box>
       </Container>
-      <Container sx={{ mt: 10 }}>
+      <Container sx={{ mt: isMobile ? 5 : 8 }}>
         <Grid container item columns={{ xs: 4, md: 12 }}>
           <Grid item xs={4}>
-            <Box>
-              <HexagonalPrism />
-            </Box>
+            {!isMobile && (
+              <Box>
+                <HexagonalPrism />
+              </Box>
+            )}
           </Grid>
           <Grid item xs={7} alignItems="center">
             <Typography
               variant="h6"
-              sx={{ color: "white", ml: 7, mt: 1, alignItems: "center" }}
+              sx={{
+                color: "white",
+                ml: !isMobile ? 7 : 2,
+                mr: !isMobile ? 7 : 2,
+                mt: 1,
+                alignItems: "center",
+              }}
             >
               Because I have lived in different european cities, I like to call
               many places 'home'. Born in 1988 and raised in Italy, I began my
               journey to independence in my early 20s by living in London, then
-              in Spain, then here in Berlin. Passionate about traveling and
+              in Spain, then here in Berlin. 
+              <br></br>
+              Passionate about traveling and
               discovering new cultures, I am now pursuing my passion to become a
-              software developer.
+              Software Developer.
               <br></br>
               In 2021, I graduated from CareerFoundry after completing an
               8-month Bootcamp. Shortly after, I secured my first junior
@@ -61,125 +86,6 @@ export default function About() {
           </Grid>
         </Grid>
       </Container>
-      {/* <Container className={classes.container}>
-        <Box display="flex" flexDirection="row" justifyContent="center">
-          <Typography variant="h4" sx={{ color: "white", mt: 10 }}>
-            My Skills
-          </Typography>
-        </Box>
-        <Grid
-          container
-          item
-          rowSpacing={3}
-          columnSpacing={{ xs: 2, sm: 2, md: 3 }}
-          columns={{ xs: 6, md: 12 }}
-          sx={{ mt: 5 }}
-        >
-          <IconContext.Provider
-            value={{
-              style: {
-                marginTop: 2,
-                verticalAlign: "middle",
-                fontSize: "30px",
-                color: "rgb(0, 123, 255)",
-              },
-            }}
-          >
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <IoLogoReact />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>React</Typography>
-                </Box>
-              </Item>
-            </Grid>
-
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <IoLogoJavascript />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>Javascript</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <IoLogoNodejs />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>Node.Js</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <IoLogoNodejs />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>Express.js</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <FaBootstrap />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>Bootstrap</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <IoLogoReact />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>React Native</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <DiMongodb />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>MongoDB</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <FaAngular />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>Angular</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <FaHtml5 />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>Html5</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <FaCss3Alt />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>CSS3</Typography>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>Material UI</Item>
-            </Grid>
-            <Grid item xs={3}>
-              <Item className={classes.container}>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <SiTypescript />
-                  <Typography sx={{ ml: 1, mt: 0.6 }}>Typescript</Typography>
-                </Box>
-              </Item>
-            </Grid>
-          </IconContext.Provider>
-        </Grid>
-      </Container> */}
     </Box>
   );
 }

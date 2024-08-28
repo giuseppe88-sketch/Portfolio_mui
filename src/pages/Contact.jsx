@@ -10,23 +10,34 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 export default function Contact() {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
   const phoneNumber = "+49 17631037200"; // Replace with your phone number
   const whatsappNumber = "+49 15213339971"; // Replace with your WhatsApp number
   const resumeLink = "/"; // Path to your CV file
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <Box
       sx={{
         height: "100vh",
-        backgroundColor: "rgba(115, 119, 126, 0.322)",
+        width: "100%",
+        backgroundColor: "black",
       }}
       id="contact"
     >
-      <Box
-        sx={{
-          padding: "100px",
-        }}
-      >
+      <Box padding={isMobile ? "10px" : "100px"}>
         <motion.img
           src={logo}
           alt="logo"
@@ -35,10 +46,9 @@ export default function Contact() {
             padding: "10px",
             marginTop: "10px",
           }}
-          // Animation when hovering over the logo
           whileHover={{
             rotate: 360, // Rotate the logo 360 degrees on hover
-            scale: 1.2, // Scale up slightly on hover
+            scale: 1.2,
           }}
           transition={{
             duration: 0.5, // Animation duration
@@ -46,12 +56,16 @@ export default function Contact() {
           }}
         />
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "row", gap: "250px" }}>
+      <Box
+        gap={!isMobile && "250px"}
+        display="flex"
+        flexDirection={isMobile ? "column" : "row"}
+      >
         <Box
+          paddingLeft={!isMobile ? "250px" : "50px"}
           sx={{
             display: "flex",
             flexDirection: "column",
-            paddingLeft: "200px",
             gap: "20px",
           }}
         >
@@ -115,7 +129,10 @@ export default function Contact() {
           </Box>
         </Box>
 
-        <Box sx={{ mt: "70px", display: "flex", flexDirection: "column" }}>
+        <Box
+          ml={isMobile && "15px"}
+          sx={{ mt: "70px", display: "flex", flexDirection: "column" }}
+        >
           <Link
             href={resume}
             target="_blank"
@@ -139,7 +156,7 @@ export default function Contact() {
             </Typography>
           </Link>
           <Link
-            href={resume}
+            href={""}
             target="_blank"
             color="primary"
             underline="none"
@@ -156,7 +173,7 @@ export default function Contact() {
                 },
               }}
             >
-              Recomandation
+              Recommendation
             </Typography>
           </Link>
         </Box>
@@ -165,7 +182,7 @@ export default function Contact() {
         component="footer"
         sx={{
           py: 2,
-          borderTop: "2px solid #000", // Solid line with thickness and color
+          borderTop: "2px solid rgba(115, 119, 126, 0.322)",
           textAlign: "center",
           width: "90%",
           margin: "0 auto",
@@ -181,11 +198,10 @@ export default function Contact() {
               <GitHubIcon
                 sx={{
                   color: grey[400],
-                  transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
-
+                  transition: "background-color 0.9s, color 0.3s",
                   "&:hover": {
-                    backgroundColor: "#5f6e8833",
-                    color: "#B0B0B0",
+                    backgroundColor: "white",
+                    color: "black",
                   },
                 }}
                 fontSize="large"
@@ -198,11 +214,10 @@ export default function Contact() {
                 sx={{
                   ml: 2,
                   color: grey[400],
-                  transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
-
+                  transition: "background-color 0.9s, color 0.3s",
                   "&:hover": {
-                    backgroundColor: "#5f6e8833",
-                    color: "#B0B0B0",
+                    backgroundColor: "white",
+                    color: "black",
                   },
                 }}
               />
@@ -214,11 +229,10 @@ export default function Contact() {
                 sx={{
                   ml: 2,
                   color: grey[400],
-                  transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
-
+                  transition: "background-color 0.9s, color 0.3s",
                   "&:hover": {
-                    backgroundColor: "#5f6e8833",
-                    color: "#B0B0B0",
+                    backgroundColor: "white",
+                    color: "black",
                   },
                 }}
               />
@@ -226,109 +240,6 @@ export default function Contact() {
           </Box>
         </Box>
       </Box>
-      {/* <Grid
-          container
-          // columns={10}
-          columns={{ xs: 2, md: 10 }}
-          alignItems="center"
-          sx={{ mt: 5 }}
-        >
-          <Grid item xs={2}>
-            <Box display="flex" flexDirection="column" alignItems="center">
-            
-            </Box>
-          </Grid>
-
-          <Grid item xs={2}>
-            <Box display="flex" flexDirection="column" alignItems="center">
-              <Link href="tel:+491785049284">
-                <Item className={classes.container}>
-                  <IoIosPhonePortrait />
-                </Item>
-                <Typography sx={{ color: "white", textAlign: "center" }}>
-                  <i>017631037200</i>
-                </Typography>
-              </Link>
-            </Box>
-          </Grid>
-          <Grid item xs={2}>
-            <Box display="flex" flexDirection="column" alignItems="center">
-              <Link href="https://www.linkedin.com/in/giuseppe-adamo-798900223/">
-                <Item className={classes.container}>
-                  <AiOutlineLinkedin />
-                </Item>
-                <Typography sx={{ color: "white", textAlign: "center" }}>
-                  <i>Connect here</i>
-                </Typography>
-              </Link>
-            </Box>
-          </Grid>
-          <Grid item xs={2}>
-            <Box display="flex" flexDirection="column" alignItems="center">
-              <Link href="https://twitter.com/home">
-                <Item className={classes.container}>
-                  <AiFillTwitterSquare />
-                </Item>
-                <Typography sx={{ color: "white", textAlign: "center" }}>
-                  <i>Follow me</i>
-                </Typography>
-              </Link>
-            </Box>
-          </Grid>
-          <Grid item xs={2}>
-            <Box display="flex" flexDirection="column" alignItems="center">
-              <Link href="https://github.com/giuseppe88-sketch">
-                <Item className={classes.container}>
-                  <FaGithubSquare />
-                </Item>
-                <Typography sx={{ color: "white", textAlign: "center" }}>
-                  <i>Found me here</i>
-                </Typography>
-              </Link>
-            </Box>
-          </Grid>
-        </Grid> */}
-      {/* <Box display="flex"
-            flexDirection="row"
-            justifyContent="center"
-            sx={{mt:8}}
-            className="icons"
-            
-           >
-          <Box flexDirection="column"
-                alignItems="center"
-                
-                >     
-           <Link href="mailto:giuseppeadamo908@gmail.com"><Item className={classes.container}><MdEmail /></Item><Typography variant="h7" sx={{color:"white"}}><i>giuseppeadamo908@gmail.com</i></Typography></Link>
-          </Box> 
-          <Box flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                >
-          <Link href="tel:+491785049284"><Item className={classes.container}><IoIosPhonePortrait /></Item><Typography sx={{color:"white", textAlign:"center"}}><i>01785049284</i></Typography></Link> 
-           </Box>
-         <Box 
-             flexDirection="column"
-             alignItems="center"
-             justifyContent="center"
-              >
-          <Link href="https://www.linkedin.com/in/giuseppe-adamo-798900223/"><Item className={classes.container}><AiOutlineLinkedin /></Item><Typography sx={{color:"white", textAlign:"center"}}><i>Connect here</i></Typography></Link>
-            </Box>
-            <Box 
-             flexDirection="column"
-             alignItems="center"
-             justifyContent="center"
-             >
-          <Link href="https://twitter.com/home"><Item className={classes.container}><AiFillTwitterSquare /></Item><Typography sx={{color:"white", textAlign:"center"}}><i>Follow me</i></Typography></Link>
-          </Box>
-          <Box 
-             flexDirection="column"
-             alignItems="center"
-             justifyContent="center"
-             >
-          <Link href="https://github.com/giuseppe88-sketch"><Item className={classes.container}><FaGithubSquare /></Item><Typography sx={{color:"white", textAlign:"center"}}><i>Found me here</i></Typography></Link>
-          </Box>
-       </Box> */}
     </Box>
   );
 }

@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const HexagonalPrism = () => {
+
   const svgRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(

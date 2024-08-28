@@ -1,4 +1,4 @@
-import React from "react";
+import { useRef, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import { Typography, Container } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -6,88 +6,89 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { grey } from "@mui/material/colors";
 import Link from "@mui/material/Link";
+import { motion } from "framer-motion";
+import "./Introduction.scss";
 
 export default function Introduction() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const divRef = useRef(null);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+  });
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!divRef.current) return;
+
+    const { width, height, top, left } = divRef.current.getBoundingClientRect();
+
+    setDimensions({ width, height, top, left });
+  }, []);
+
+  console.log(isMobile);
+
   return (
     <>
       <Box
         id="introduction"
+        className="introduction-container"
         height="100%"
         maxHeight="1200px"
-        display="flex"
-        flexDirection="row"
-        width="80%"
-        justifyContent="space-between"
-        m="auto"
-        sx={{ mt: 10 }}
+        width="100%"
+        sx={{ mt: isMobile ? 5 : 10 }}
       >
-        <Box
-          sx={{
-            width: "100%",
-            padding: "35px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-          }}
-        >
-          <Typography variant="h2" sx={{ color: "white" }}>
+        <Box className="introduction-content" width={"100%"}>
+          <Typography variant="h2" className="title">
             Full Stack Developer.
           </Typography>
-          <Typography variant="h6" sx={{ color: "white", mt: 1 }}>
-            I like to create full stack project with an eye for UI.
+          <Typography variant="h6" className="subtitle">
+            I like to create full stack projects from scratch, with a keen eye
+            for UI.{" "}
           </Typography>
-          <Box sx={{ height: "60px" }}></Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              width: "400px",
-              gap: "40px",
-              flexWrap: "wrap",
-              padding: "10px 0 0 30px",
-            }}
-          >
-            <Box sx={{ flex: 1, minWidth: "100px" }}>
-              <Typography
-                sx={{
-                  color: "white",
-                  fontSize: "14px",
-                  lineHeight: "16px",
-                  wordWrap: "break-word",
-                }}
-              >
-                Highly skilled at progressive enhancement, design systems & UI
-                Engineering.
+          <Box className="spacer"></Box>
+          <Box className="info-boxes">
+            <Box className="info-box">
+              <Typography className="info-text">
+                Skilled in maintaining and improving existing softwares, with a
+                strong focus on UI details
               </Typography>
             </Box>
-            <Box sx={{ flex: 1, minWidth: "100px" }}>
-              <Typography
-                sx={{
-                  color: "white",
-                  fontSize: "14px",
-                  lineHeight: "16px",
-                  wordWrap: "break-word",
-                }}
-              >
-                Proven experience building successful products for clients
-                across several countries.
+            <Box className="info-box">
+              <Typography className="info-text">
+                Proven experience in building full-stack projects using MERN
+                technologies.{" "}
               </Typography>
             </Box>
-          </Box>{" "}
+          </Box>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "start",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src="https://ik.imagekit.io/7lqiq1zm3ks/IMG_1419a_ikoAWbRgxF_HphuIOoFu.JPG?updatedAt=1724431867244"
-            alt="intro-imagekit"
-            width="45%"
-          ></img>
-        </Box>
+        {!isMobile && (
+          <Box className="image-container">
+            <motion.img
+              ref={divRef}
+              src="https://ik.imagekit.io/7lqiq1zm3ks/IMG_1419a_ikoAWbRgxF_HphuIOoFu.JPG?updatedAt=1724431867244"
+              alt="intro-imagekit"
+              width="45%"
+              style={{ display: "block", borderRadius: "2%" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              whileHover={{ scale: 1.1 }}
+            />
+          </Box>
+        )}
       </Box>
       <Box width="50%" margin="auto" sx={{ mt: 3, mb: 3 }}>
         <Container align="center">
@@ -95,11 +96,10 @@ export default function Introduction() {
             <GitHubIcon
               sx={{
                 color: grey[400],
-                transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
-
+                transition: "background-color 0.9s, color 0.3s",
                 "&:hover": {
-                  backgroundColor: "#5f6e8833",
-                  color: "#B0B0B0",
+                  backgroundColor: "white",
+                  color: "black",
                 },
               }}
               fontSize="large"
@@ -112,11 +112,10 @@ export default function Introduction() {
               sx={{
                 ml: 2,
                 color: grey[400],
-                transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
-
+                transition: "background-color 0.9s, color 0.8s",
                 "&:hover": {
-                  backgroundColor: "#5f6e8833",
-                  color: "#B0B0B0",
+                  backgroundColor: "white",
+                  color: "black",
                 },
               }}
             />
@@ -128,11 +127,10 @@ export default function Introduction() {
               sx={{
                 ml: 2,
                 color: grey[400],
-                transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
-
+                transition: "background-color 0.9s, color 0.3s",
                 "&:hover": {
-                  backgroundColor: "#5f6e8833",
-                  color: "#B0B0B0",
+                  backgroundColor: "white",
+                  color: "black",
                 },
               }}
             />

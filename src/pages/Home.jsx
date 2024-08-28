@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Introduction from "./Introduction";
 import MyWork from "./MyWork";
 import About from "./About";
+import Skills from "./Skills";
 import Contact from "./Contact";
 import "../App.css";
 
@@ -15,19 +16,26 @@ const darkTheme = createTheme({
   },
   typography: {
     fontFamily: ["Quicksand", "sans-serif"].join(","),
-
-    // fontFamily: ["Raleway", "sans-serif"].join(","),
-
-    // fontFamily: ["Lato", "sans-serif"].join(","),
-
-    // fontFamily: ["Poppins", "sans-serif"].join(","),
   },
 });
 
 export default function Home() {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 600);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   React.useEffect(() => {
     const handleScroll = (event) => {
-      // Scroll down
       window.scrollBy({
         behavior: "smooth",
       });
@@ -46,7 +54,11 @@ export default function Home() {
       <ThemeProvider theme={darkTheme}>
         <div
           className="scroll-container"
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
         >
           <div className="section">
             <Introduction />
@@ -56,6 +68,9 @@ export default function Home() {
           </div>
           <div className="section">
             <About />
+          </div>
+          <div className="section">
+            <Skills />
           </div>
           <div className="section">
             <Contact />

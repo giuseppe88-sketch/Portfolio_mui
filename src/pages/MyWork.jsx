@@ -43,18 +43,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MyWork() {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
   const classes = useStyles();
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <Box
       id="projects"
-      sx={{ height: "100%", backgroundColor: "rgba(115, 119, 126, 0.322)" }}
+      sx={{
+        height: "100%",
+        backgroundColor: "rgba(115, 119, 126, 0.322)",
+      }}
     >
       <Container maxWidth="lg">
         <Box display="flex" flexDirection="row" justifyContent="center">
           <Box>
-            <Typography variant="h2" sx={{ color: "white", mt: 10 }}>
-              Project
+            <Typography
+              variant={isMobile ? "h3" : "h2"}
+              mt={isMobile ? 5 : 10}
+              sx={{ color: "white" }}
+            >
+              Projects
             </Typography>
           </Box>
         </Box>
@@ -65,16 +86,16 @@ export default function MyWork() {
         rowSpacing={3}
         columnSpacing={{ xs: 6, sm: 6, md: 8 }}
         columns={{ xs: 4, md: 8 }}
-        sx={{ mt: 5 }}
         padding={"50px"}
         justifyContent="center"
         alignItems="center"
+        mt={isMobile ? 1 : 3}
       >
         <Grid item xs={3}>
           <Card className={classes.container}>
             <CardMedia
               component="img"
-              height="260"
+              height={isMobile ? "100px" : 260}
               image="https://ik.imagekit.io/7lqiq1zm3ks/Screenshot%20from%202024-08-23%2016-50-50_n3wXEY88T.png?updatedAt=1724424710292"
               alt="Trello_CLONE"
               sx={{ objectFit: "fill" }}
@@ -113,7 +134,7 @@ export default function MyWork() {
           <Card className={classes.container}>
             <CardMedia
               component="img"
-              height="260"
+              height={isMobile ? "100px" : 260}
               image="https://ik.imagekit.io/7lqiq1zm3ks/sscbdshop_KqLDpImgkv.png?ik-sdk-version=javascript-1.4.3&updatedAt=1643993298857"
               alt="green iguana"
               sx={{ objectFit: "fill" }}
@@ -152,7 +173,7 @@ export default function MyWork() {
           <Card className={classes.container}>
             <CardMedia
               component="img"
-              height="260"
+              height={isMobile ? "100px" : 260}
               image="https://ik.imagekit.io/7lqiq1zm3ks/meetappSS_saBcmV1gj.png?ik-sdk-version=javascript-1.4.3&updatedAt=1643993069749"
               alt="Meet app"
               sx={{ objectFit: "fill" }}
@@ -207,7 +228,7 @@ export default function MyWork() {
           <Card className={classes.container}>
             <CardMedia
               component="img"
-              height="260"
+              height={isMobile ? "100px" : 260}
               image="https://ik.imagekit.io/7lqiq1zm3ks/native_fRnPu1Paw.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1643993296721"
               alt="Meet app"
               sx={{ objectFit: "contain", width: "100%" }}

@@ -1,40 +1,21 @@
 .App {
   text-align: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 body {
   background-color: black;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media screen and (max-width: 600px) {
-  .pic-about {
-    width: 100%;
-  }
-}
 .scroll-container {
   display: flex;
   flex-direction: column;
 }
-
-/* .section {
-  height: 100vh; 
-  padding: 20px;
-  box-sizing: border-box;
-} */
-
-/* .scroll-container {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100vh;
-  scroll-behavior: smooth;
-} */
-
-/* Each section should take up the full viewport height and snap into place */
-/* .section {
-  scroll-snap-align: start;
-  min-height: 100vh;
-} */
-
-/* .section-large {
-  height: auto; 
-  min-height: 200vh; 
-} */
