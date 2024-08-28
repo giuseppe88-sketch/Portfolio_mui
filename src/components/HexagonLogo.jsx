@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const HexagonalPrism = () => {
-
   const svgRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
-
   useEffect(() => {
+    const currentRef = svgRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
@@ -16,13 +16,13 @@ const HexagonalPrism = () => {
       { threshold: 0.7 }
     );
 
-    if (svgRef.current) {
-      observer.observe(svgRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (svgRef.current) {
-        observer.unobserve(svgRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
