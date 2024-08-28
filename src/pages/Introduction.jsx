@@ -12,12 +12,7 @@ import "./Introduction.scss";
 export default function Introduction() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const divRef = useRef(null);
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-    top: 0,
-    left: 0,
-  });
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -29,16 +24,6 @@ export default function Introduction() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    if (!divRef.current) return;
-
-    const { width, height, top, left } = divRef.current.getBoundingClientRect();
-
-    setDimensions({ width, height, top, left });
-  }, []);
-
-  console.log(isMobile);
 
   return (
     <>

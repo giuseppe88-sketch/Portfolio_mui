@@ -20,20 +20,6 @@ const darkTheme = createTheme({
 });
 
 export default function Home() {
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 600);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   React.useEffect(() => {
     const handleScroll = (event) => {
       window.scrollBy({

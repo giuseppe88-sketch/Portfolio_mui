@@ -14,7 +14,6 @@ export default function Contact() {
 
   const phoneNumber = "+49 17631037200"; // Replace with your phone number
   const whatsappNumber = "+49 15213339971"; // Replace with your WhatsApp number
-  const resumeLink = "/"; // Path to your CV file
 
   React.useEffect(() => {
     const handleResize = () => {

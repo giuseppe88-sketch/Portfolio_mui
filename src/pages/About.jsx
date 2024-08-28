@@ -1,22 +1,9 @@
 import React from "react";
 import { Container, Grid, Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import { Typography } from "@mui/material";
-import { IoLogoReact, IoLogoJavascript, IoLogoNodejs } from "react-icons/io5";
-import { IconContext } from "react-icons";
-import { FaBootstrap, FaAngular, FaHtml5, FaCss3Alt } from "react-icons/fa";
-import { DiMongodb } from "react-icons/di";
-import { SiTypescript } from "react-icons/si";
-import HexagonalPrism from "../components/HexagonLogo";
-import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles({
-  container: {
-    transition: "transform 0.15s ease-in-out",
-    "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
-  },
-});
+import { Typography } from "@mui/material";
+
+import HexagonalPrism from "../components/HexagonLogo";
 
 export default function About() {
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
@@ -68,11 +55,10 @@ export default function About() {
               Because I have lived in different european cities, I like to call
               many places 'home'. Born in 1988 and raised in Italy, I began my
               journey to independence in my early 20s by living in London, then
-              in Spain, then here in Berlin. 
+              in Spain, then here in Berlin.
               <br></br>
-              Passionate about traveling and
-              discovering new cultures, I am now pursuing my passion to become a
-              Software Developer.
+              Passionate about traveling and discovering new cultures, I am now
+              pursuing my passion to become a Software Developer.
               <br></br>
               In 2021, I graduated from CareerFoundry after completing an
               8-month Bootcamp. Shortly after, I secured my first junior

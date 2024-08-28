@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Grid, Box } from "@mui/material";
 import { Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import Slider from "react-slick";
 import "./Skills.css";
 import Git_logo from "../asset/Git-Logo.png";
 import JS_logo from "../asset/JavaScript-logo.png";
