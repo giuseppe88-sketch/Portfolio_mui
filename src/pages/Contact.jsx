@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 
 import logo from "../asset/logo.png";
 import resume from "../asset/cv.pdf";
+import recommendation from "../asset/Recommendation.pdf";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -155,7 +156,7 @@ export default function Contact() {
             </Typography>
           </Link>
           <Link
-            href={""}
+            href={recommendation}
             target="_blank"
             color="primary"
             underline="none"
