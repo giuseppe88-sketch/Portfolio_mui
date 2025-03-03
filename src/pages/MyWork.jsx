@@ -153,7 +153,7 @@ export default function MyWork() {
             <CardActions className={classes.cardActions}>
               <Button size="small">
                 <Link
-                  href="https://trelloclone22.netlify.app/"
+                  href="https://github.com/giuseppe88-sketch/frape"
                   underline="none"
                   sx={{
                     color: "#ffffff",
@@ -162,9 +162,11 @@ export default function MyWork() {
                     "&:hover": {
                       color: "rgba(255, 255, 255, 0.9)",
                     },
+                    objectFit: "contain",
+                    width: "100%",
                   }}
                 >
-                  See the project
+                  See the Github
                 </Link>
               </Button>
             </CardActions>

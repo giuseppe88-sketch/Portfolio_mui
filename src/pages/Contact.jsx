@@ -5,7 +5,7 @@ import { grey } from "@mui/material/colors";
 import { motion } from "framer-motion";
 
 import logo from "../asset/logo.png";
-import resume from "../asset/cv.pdf";
+import resume from "../asset/GiuseppeAdamo_Resume.pdf";
 import recommendation from "../asset/Recommendation.pdf";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
