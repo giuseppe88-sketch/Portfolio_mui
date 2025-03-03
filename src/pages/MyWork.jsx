@@ -135,7 +135,7 @@ export default function MyWork() {
               height={isMobile ? "100px" : 260}
               image="https://ik.imagekit.io/7lqiq1zm3ks/IMG_2845_VI9vLNy6A.jpeg?updatedAt=1740996168373"
               alt="FRAPE"
-              sx={{ objectFit: "fill" }}
+              sx={{ objectFit: "contain", width: "100%" }}
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant="h5" component="div">
