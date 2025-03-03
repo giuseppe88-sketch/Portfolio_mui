@@ -30,7 +30,7 @@ const AtomLogo = () => {
   return (
     <motion.svg
       ref={svgRef}
-      width="400"
+      width="450"
       height="400"
       viewBox="0 0 200 200"
       xmlns="http://www.w3.org/2000/svg"
