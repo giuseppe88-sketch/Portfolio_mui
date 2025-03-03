@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { Container, Grid } from "@mui/material";
 
-
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -107,6 +106,48 @@ export default function MyWork() {
                 Developed a fully functional Trello clone using the MERN stack.
                 The application allows users to seamlessly create, edit, delete,
                 and drag-and-drop tasks across boards.
+              </Typography>
+            </CardContent>
+            <CardActions className={classes.cardActions}>
+              <Button size="small">
+                <Link
+                  href="https://trelloclone22.netlify.app/"
+                  underline="none"
+                  sx={{
+                    color: "#ffffff",
+                    transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
+                    borderRadius: "5px",
+                    "&:hover": {
+                      color: "rgba(255, 255, 255, 0.9)",
+                    },
+                  }}
+                >
+                  See the project
+                </Link>
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>{" "}
+        <Grid item xs={3}>
+          <Card className={classes.container}>
+            <CardMedia
+              component="img"
+              height={isMobile ? "100px" : 260}
+              image="https://ik.imagekit.io/7lqiq1zm3ks/IMG_2845_VI9vLNy6A.jpeg?updatedAt=1740996168373"
+              alt="FRAPE"
+              sx={{ objectFit: "fill" }}
+            />
+            <CardContent className={classes.cardContent}>
+              <Typography gutterBottom variant="h5" component="div">
+                FRAPE Ocean_Scan
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Developed a mobile application that allows users to scan fish
+                product barcodes and instantly access sustainability and
+                environmental impact insights. The app integrates the
+                OpenFoodFacts API to retrieve product details and incorporates
+                pollution data analysis using Copernicus Marine satellite data
+                to provide users with informed seafood choices.
               </Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
