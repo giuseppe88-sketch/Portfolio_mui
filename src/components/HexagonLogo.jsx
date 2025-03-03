@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const HexagonalPrism = () => {
+const AtomLogo = () => {
   const svgRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -34,89 +34,144 @@ const HexagonalPrism = () => {
       height="400"
       viewBox="0 0 200 200"
       xmlns="http://www.w3.org/2000/svg"
-      initial={{ rotate: 0 }}
-      animate={isInView ? { rotate: [0, 360] } : {}}
-      transition={{ duration: 17, loop: Infinity, ease: "linear" }}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
+      transition={{ duration: 1 }}
     >
-      {/* Central Circle */}
+      {/* Nucleus */}
       <motion.circle
         cx="100"
         cy="100"
-        r="40"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        animate={isInView ? { scale: [1, 1.2, 1], rotate: [0, 360] } : {}}
-        transition={{ duration: 7, loop: Infinity, ease: "easeInOut" }}
+        r="20"
+        fill="#ffffff"
+        animate={isInView ? { 
+          scale: [1, 1.1, 1],
+          opacity: [0.8, 1, 0.8]
+        } : {}}
+        transition={{ 
+          duration: 3, 
+          loop: Infinity, 
+          ease: "easeInOut" 
+        }}
       />
 
-      {/* First Layer of Hexagons */}
-      <motion.g
-        fill="none"
-        stroke="white"
-        strokeWidth="1"
-        animate={isInView ? { rotate: [0, -360] } : {}}
-        transition={{ duration: 12, loop: Infinity, ease: "easeInOut" }}
-      >
-        {[...Array(6)].map((_, i) => (
-          <motion.polygon
-            key={i}
-            points="100,40 130,60 130,100 100,120 70,100 70,60"
-            transform={`rotate(${i * 60} 100 100)`}
-          />
-        ))}
-      </motion.g>
-
-      {/* Second Layer of Hexagons */}
-      <motion.g
-        fill="none"
-        stroke="white"
-        strokeWidth="1"
-        animate={isInView ? { rotate: [0, 360] } : {}}
-        transition={{ duration: 17, loop: Infinity, ease: "easeInOut" }}
-      >
-        {[...Array(6)].map((_, i) => (
-          <motion.polygon
-            key={i}
-            points="100,20 140,40 140,80 100,100 60,80 60,40"
-            transform={`rotate(${i * 60} 100 100)`}
-          />
-        ))}
-      </motion.g>
-
-      {/* Third Layer: Circular Waves */}
-      <motion.circle
+      {/* Electron Orbit 1 - X axis */}
+      <motion.ellipse
         cx="100"
         cy="100"
-        r="60"
+        rx="80"
+        ry="25"
         fill="none"
-        stroke="white"
+        stroke="#ffffff"
         strokeWidth="1"
-        animate={isInView ? { scale: [1, 1.3, 1], opacity: [1, 0.5, 1] } : {}}
-        transition={{ duration: 7, loop: Infinity, ease: "easeInOut" }}
-      />
-      <motion.circle
-        cx="100"
-        cy="100"
-        r="80"
-        fill="none"
-        stroke="white"
-        strokeWidth="1"
-        animate={isInView ? { scale: [1, 1.3, 1], opacity: [1, 0.5, 1] } : {}}
-        transition={{ duration: 9, loop: Infinity, ease: "easeInOut" }}
+        opacity="0.6"
+        animate={isInView ? { rotateY: [0, 360] } : {}}
+        transition={{ 
+          duration: 12, 
+          loop: Infinity, 
+          ease: "linear" 
+        }}
+        style={{ transformOrigin: "center" }}
       />
 
-      {/* Star-Like Shape in the Center */}
-      <motion.polygon
-        points="100,50 110,90 150,90 115,110 125,150 100,125 75,150 85,110 50,90 90,90"
+      {/* Electron 1 */}
+      <motion.circle
+        cx="100"
+        cy="75"
+        r="6"
+        fill="#ffffff"
+        animate={isInView ? { 
+          rotateX: [0, 360],
+          cx: [180, 20, 180],
+          cy: [100, 100, 100]
+        } : {}}
+        transition={{ 
+          duration: 6, 
+          loop: Infinity, 
+          ease: "linear" 
+        }}
+        style={{ transformOrigin: "center" }}
+      />
+
+      {/* Electron Orbit 2 - Y axis rotated 60 degrees */}
+      <motion.ellipse
+        cx="100"
+        cy="100"
+        rx="80"
+        ry="25"
         fill="none"
-        stroke="white"
-        strokeWidth="2"
-        animate={isInView ? { rotate: [0, 360], scale: [1, 0.8, 1] } : {}}
-        transition={{ duration: 4, loop: Infinity, ease: "easeInOut" }}
+        stroke="#ffffff"
+        strokeWidth="1"
+        opacity="0.6"
+        initial={{ rotateZ: 60 }}
+        animate={isInView ? { rotateX: [0, 360] } : {}}
+        transition={{ 
+          duration: 10, 
+          loop: Infinity, 
+          ease: "linear" 
+        }}
+        style={{ transformOrigin: "center" }}
+      />
+
+      {/* Electron 2 */}
+      <motion.circle
+        cx="150"
+        cy="100"
+        r="6"
+        fill="#ffffff"
+        animate={isInView ? { 
+          rotateZ: [60, 420],
+          cx: [140, 60, 140],
+          cy: [150, 50, 150]
+        } : {}}
+        transition={{ 
+          duration: 5, 
+          loop: Infinity, 
+          ease: "linear" 
+        }}
+        style={{ transformOrigin: "center" }}
+      />
+
+      {/* Electron Orbit 3 - Y axis rotated 120 degrees */}
+      <motion.ellipse
+        cx="100"
+        cy="100"
+        rx="80"
+        ry="25"
+        fill="none"
+        stroke="#ffffff"
+        strokeWidth="1"
+        opacity="0.6"
+        initial={{ rotateZ: 120 }}
+        animate={isInView ? { rotateX: [0, 360] } : {}}
+        transition={{ 
+          duration: 15, 
+          loop: Infinity, 
+          ease: "linear" 
+        }}
+        style={{ transformOrigin: "center" }}
+      />
+
+      {/* Electron 3 */}
+      <motion.circle
+        cx="50"
+        cy="100"
+        r="6"
+        fill="#ffffff"
+        animate={isInView ? { 
+          rotateZ: [120, 480],
+          cx: [60, 140, 60],
+          cy: [150, 50, 150]
+        } : {}}
+        transition={{ 
+          duration: 7, 
+          loop: Infinity, 
+          ease: "linear" 
+        }}
+        style={{ transformOrigin: "center" }}
       />
     </motion.svg>
   );
 };
 
-export default HexagonalPrism;
+export default AtomLogo;
