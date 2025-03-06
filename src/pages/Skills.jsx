@@ -1,8 +1,9 @@
-import React from "react";
-import { Container, Grid, Box } from "@mui/material";
-import { Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Container, Grid, Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import "./Skills.css";
+
+// Import logos
 import Git_logo from "../asset/Git-Logo.png";
 import JS_logo from "../asset/JavaScript-logo.png";
 import Mongo_logo from "../asset/mongodb.png";
@@ -15,40 +16,96 @@ import Next_logo from "../asset/nextjs_icon.png";
 import Typescript_logo from "../asset/typescript_logo.png";
 
 export default function Skills() {
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  React.useEffect(() => {
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const logos = [
-    Typescript_logo,
-    React_logo,
-    Next_logo,
-    JS_logo,
-    MUI_logo,
-    Node,
-    Framer,
-    Git_logo,
-    Express,
-    Mongo_logo,
+  const skillLogos = [
+    { src: Typescript_logo, name: "TypeScript" },
+    { src: React_logo, name: "React" },
+    { src: Next_logo, name: "Next.js" },
+    { src: JS_logo, name: "JavaScript" },
+    { src: MUI_logo, name: "Material UI" },
+    { src: Node, name: "Node.js" },
+    { src: Framer, name: "Framer Motion" },
+    { src: Git_logo, name: "Git" },
+    { src: Express, name: "Express" },
+    { src: Mongo_logo, name: "MongoDB" },
   ];
+
+  const skillCategories = [
+    {
+      title: "Front-End Development",
+      skills: [
+        "React & TypeScript/JavaScript: Professional experience in building and maintaining complex front-end applications.",
+        "Next.js: Maintained dynamic web pages using Next.js.",
+      ],
+    },
+    {
+      title: "Back-End Development",
+      skills: [
+        "Contributed to backend development, enhancing overall application functionality.",
+        "Extensive experience in designing backend systems for side projects using Node.js and MongoDB.",
+      ],
+    },
+    {
+      title: "Mobile Development",
+      skills: [
+        "Involved in mobile application development with React Native, ensuring consistency across platforms.",
+      ],
+    },
+    {
+      title: "DevOps & Cloud",
+      skills: [
+        "Azure: Implemented and managed continuous deployment pipelines on Azure.",
+      ],
+    },
+  ];
+
   return (
     <Box
-      height={!isMobile ? "100%" : "100%"}
+      component={motion.div}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={containerVariants}
+      height="100%"
       maxHeight="1200px"
-      sx={{ backgroundColor: "rgba(115, 119, 126, 0.322)" }}
+      sx={{
+        backgroundColor: "rgba(22, 28, 36, 0.9)",
+        backgroundImage:
+          "linear-gradient(to bottom, rgba(22, 28, 36, 0.95), rgba(22, 28, 36, 0.85))",
+      }}
     >
+      {/* Title Section */}
       <Container maxWidth="sm">
-        <Box display="flex" flexDirection="row" justifyContent="center">
+        <Box display="flex" justifyContent="center">
           <Typography
             variant={isMobile ? "h3" : "h2"}
             sx={{ color: "white", mt: 10 }}
@@ -57,81 +114,65 @@ export default function Skills() {
           </Typography>
         </Box>
       </Container>
+
+      {/* Main Content */}
       <Container sx={{ mt: isMobile ? 5 : 8 }}>
-        <Grid container item columns={{ xs: 6, md: 12 }}>
-          <Grid item xs={6} alignItems="center">
-            <Typography
-              variant="h6"
-              sx={{
-                color: "white",
-                ml: !isMobile ? 7 : 2,
-                mr: !isMobile ? 7 : 2,
-                alignItems: "center",
-                mb: !isMobile ? 10 : 0,
-              }}
-            >
-              <strong>Front-End Development:</strong>
-              <ul>
-                <li>
-                  React & TypeScript/JavaScript: Professional experience in
-                  building and maintaining complex front-end applications.
-                </li>
-                <li>Next.js: Maintained dynamic web pages using Next.js.</li>
-              </ul>
-
-              <strong>Back-End Development:</strong>
-              <ul>
-                <li>
-                  Contributed to backend development, enhancing overall
-                  application functionality.
-                </li>
-                <li>
-                  Extensive experience in designing backend systems for side
-                  projects using Node.js and MongoDB.
-                </li>
-              </ul>
-
-              <strong>Mobile Development:</strong>
-              <ul>
-                <li>
-                  Involved in mobile application development with React Native,
-                  ensuring consistency across platforms.
-                </li>
-              </ul>
-
-              <strong>DevOps & Cloud:</strong>
-              <ul>
-                <li>
-                  Azure: Implemented and managed continuous deployment pipelines
-                  on Azure.
-                </li>
-              </ul>
-            </Typography>
+        <Grid container spacing={4} columns={{ xs: 4, md: 12 }}>
+          {/* Skills Description */}
+          <Grid item xs={4} md={7}>
+            <Box sx={{ px: isMobile ? 2 : 4, mb: isMobile ? 6 : 10 }}>
+              {skillCategories.map((category, categoryIndex) => (
+                <Box key={categoryIndex} mb={3}>
+                  <Typography
+                    variant="h6"
+                    component="h3"
+                    sx={{
+                      color: "white",
+                      fontWeight: "bold",
+                      mb: 1,
+                    }}
+                  >
+                    {category.title}
+                  </Typography>
+                  <Box component="ul" sx={{ color: "white", pl: 2 }}>
+                    {category.skills.map((skill, skillIndex) => (
+                      <Box component="li" key={skillIndex} mb={1}>
+                        <Typography
+                          sx={{ color: "rgba(255, 255, 255, 0.7)" }}
+                          variant="body1"
+                          
+                        >
+                          {skill}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                </Box>
+              ))}
+            </Box>
           </Grid>
-          <Grid item xs={4}>
-            <Box
-              sx={{
-                mx: "auto",
-                mt: !isMobile ? 4 : 0,
-                alignItems: "center",
-                ml: 6,
-              }}
-            >
-              <Grid
-                container
-                spacing={4}
-                alignItems="center"
-                justifyContent="center"
-                margin="0 auto"
-                sx={{ mb: 5 }}
-              >
-                {logos.map((logo, index) => (
-                  <Grid item xs={3} sm={4} md={6} key={index}>
+
+          {/* Skills Logo Grid */}
+          <Grid item xs={4} md={5}>
+            <Box sx={{ mb: 5 }}>
+              <Grid container spacing={3} justifyContent="center">
+                {skillLogos.map((logo, index) => (
+                  <Grid
+                    item
+                    xs={4}
+                    sm={3}
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
                     <motion.div
                       whileHover={{
                         scale: 1.1,
-                        rotate: [0, -5, 5, -5, 5, 0], // Shaking effect by rotating back and forth
-                        transition: { duration: 0.5, ease: "easeInOut" }, // Smooth transition for shaking
+                        rotate: [0, -5, 5, -5, 5, 0],
+                        transition: { duration: 0.5, ease: "easeInOut" },
                       }}
                       whileTap={{ scale: 0.9 }}
                       initial={{ opacity: 0, y: 50 }}
@@ -139,10 +180,24 @@ export default function Skills() {
                       transition={{ duration: 0.2, delay: index * 0.1 }}
                     >
                       <img
-                        src={logo}
-                        alt={`logo-${index}`}
-                        style={{ width: "50px", height: "auto" }}
+                        src={logo.src}
+                        alt={`${logo.name} logo`}
+                        style={{
+                          width: "50px",
+                          height: "auto",
+                          marginBottom: "8px",
+                        }}
                       />
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: "white",
+                          textAlign: "center",
+                          display: "block",
+                        }}
+                      >
+                        {logo.name}
+                      </Typography>
                     </motion.div>
                   </Grid>
                 ))}

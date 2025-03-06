@@ -2,7 +2,7 @@ import React from "react";
 import { AppBar, Toolbar } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import { Link } from "react-scroll";
+import { Link, scroller } from "react-scroll";
 import logo from "../asset/logo.png";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
@@ -11,25 +11,36 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Link as RouterLink } from 'react-router-dom';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // }
+  const handleClickLink = (section) => {
+    if (window.location.pathname !== "/") {
+      navigate("/");
+
+      // Use react-scroll's scroller to smoothly scroll to the section
+      setTimeout(() => {
+        scroller.scrollTo(section, {
+          duration: 1500,
+          delay: 0,
+          smooth: "easeInOutQuart",
+          offset: -70,
+        });
+      }, 300);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -99,7 +110,12 @@ export default function Navbar() {
             >
               {" "}
               <Box sx={{ display: "flex" }}>
-                <Link to="projects" smooth={true} duration={1000}>
+                <Link
+                  to="projects"
+                  smooth={true}
+                  duration={1000}
+                  onClick={() => handleClickLink("projects")}
+                >
                   <Button
                     onClick={handleCloseNavMenu}
                     sx={{
@@ -118,7 +134,13 @@ export default function Navbar() {
                     Projects
                   </Button>
                 </Link>
-                <Link to="about" smooth={true} duration={1000}>
+
+                <Link
+                  onClick={() => handleClickLink("about")}
+                  to="about"
+                  smooth={true}
+                  duration={1000}
+                >
                   <Button
                     onClick={handleCloseNavMenu}
                     sx={{
@@ -134,9 +156,15 @@ export default function Navbar() {
                     }}
                   >
                     About me
-                  </Button>
+                  </Button>{" "}
                 </Link>
-                <Link to="contact" smooth={true} duration={1000}>
+
+                <Link
+                  to="contact"
+                  smooth={true}
+                  duration={1000}
+                  onClick={() => handleClickLink("contact")}
+                >
                   <Button
                     onClick={handleCloseNavMenu}
                     sx={{
@@ -160,7 +188,34 @@ export default function Navbar() {
                   display: "flex",
                 }}
               >
-                <Link to="introduction" smooth={true} duration={1000}>
+                <RouterLink
+                  to="/blog"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      borderRadius: "10px",
+                      transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
+
+                      "&:hover": {
+                        backgroundColor: "#5f6e8833",
+                        color: "#B0B0B0",
+                      },
+                    }}
+                  >
+                    Blog
+                  </Button>
+                </RouterLink>
+                <Link
+                  to="introduction"
+                  smooth={true}
+                  duration={1000}
+                  onClick={() => handleClickLink("introduction")}
+                >
                   <motion.img
                     src={logo}
                     alt="logo"

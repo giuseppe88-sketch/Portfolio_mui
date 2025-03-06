@@ -20,26 +20,11 @@ const darkTheme = createTheme({
 });
 
 export default function Home() {
-  React.useEffect(() => {
-    const handleScroll = (event) => {
-      window.scrollBy({
-        behavior: "smooth",
-      });
-    };
-
-    window.addEventListener("wheel", handleScroll);
-
-    // Cleanup on component unmount
-    return () => {
-      window.removeEventListener("wheel", handleScroll);
-    };
-  }, []);
 
   return (
     <div>
       <ThemeProvider theme={darkTheme}>
         <div
-          className="scroll-container"
           style={{
             display: "flex",
             flexDirection: "column",
