@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -10,7 +10,7 @@ import {
   Button,
   Link,
   Chip,
-  IconButton,
+  // IconButton,
   useTheme,
   useMediaQuery,
   createTheme,
@@ -85,7 +85,7 @@ const projectsData = [
 export default function MyWork() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  // const [selectedCategory, setSelectedCategory] = useState("All");
   const [hoveredCard, setHoveredCard] = useState(null);
 
   const darkTheme = createTheme({
@@ -103,11 +103,11 @@ export default function MyWork() {
     },
   });
 
-  // Get unique technologies across all projects
-  const allTechnologies = [
-    "All",
-    ...new Set(projectsData.flatMap((project) => project.technologies)),
-  ];
+  // Get unique technologies across all projects TODO:COMINGUP SOON
+  // const allTechnologies = [
+  //   "All",
+  //   ...new Set(projectsData.flatMap((project) => project.technologies)),
+  // ];
 
   // Filter projects by selected technology
   const filteredProjects = projectsData;

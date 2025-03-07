@@ -7,7 +7,6 @@ import {
   TextField,
   InputAdornment,
   Chip,
-  Button,
   createTheme,
   ThemeProvider,
 } from '@mui/material';

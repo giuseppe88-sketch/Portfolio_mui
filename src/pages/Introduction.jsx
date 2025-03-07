@@ -1,11 +1,11 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef,} from "react";
 import {
   Box,
   Typography,
   Container,
   Link,
-  Button,
-  Chip,
+  // Button,
+  // Chip,
   IconButton,
   useTheme,
   useMediaQuery,
@@ -13,8 +13,8 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import CodeIcon from "@mui/icons-material/Code";
-import DownloadIcon from "@mui/icons-material/Download";
+// import CodeIcon from "@mui/icons-material/Code";
+// import DownloadIcon from "@mui/icons-material/Download";
 import { motion } from "framer-motion";
 import "./Introduction.scss";
 
