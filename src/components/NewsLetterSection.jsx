@@ -44,8 +44,9 @@ const NewsletterSection= () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           sx={{
-            backgroundColor: 'rgba(255,255,255,0.9)',
+            backgroundColor: 'rgba(22, 28, 36, 0.9)',
             borderRadius: 1,
+            
           }}
         />
         <Button
@@ -53,7 +54,7 @@ const NewsletterSection= () => {
           onClick={handleSubscribe}
           sx={{
             bgcolor: '#fff',
-            color: '#3f51b5',
+            color: '#000',
             '&:hover': { bgcolor: '#f0f0f0' },
           }}
         >

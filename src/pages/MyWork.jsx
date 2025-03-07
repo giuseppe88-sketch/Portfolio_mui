@@ -282,7 +282,6 @@ export default function MyWork() {
                             ? "scale(1.05)"
                             : "scale(1)",
                       }}
-                      //               sx={{ objectFit: "contain", width: "100%" }}
                     />
 
                     {/* Overlay gradient */}

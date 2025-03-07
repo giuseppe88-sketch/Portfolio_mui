@@ -21,7 +21,7 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#1976',
+      main: '#000',
     },
     secondary: {
       main: '#1976',
@@ -59,7 +59,8 @@ const Blog = () => {
       <Container
         maxWidth="lg"
         sx={{
-          background: 'rgba(210, 212, 216, 0.32)',
+          // background:  "rgba(252, 252, 252, 0.23)",
+          background:  "rgba(22, 28, 36, 0.9)",
           py: 6,
           minHeight: '100vh',
           width: '100%',
@@ -86,7 +87,7 @@ const Blog = () => {
                   mb: 2,
                 }}
               >
-                Tech & Code Blog
+                Techies and Others
               </Typography>
               <Typography
                 variant="subtitle1"
@@ -95,7 +96,7 @@ const Blog = () => {
                 sx={{ maxWidth: '600px' }}
               >
                 Sharing my insights and experiences on web development,
-                programming, and the latest tech trends
+                latest tech trends, and other things
               </Typography>
             </Box>
           </Grid>

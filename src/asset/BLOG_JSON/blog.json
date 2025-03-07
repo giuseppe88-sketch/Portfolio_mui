@@ -4,7 +4,7 @@
     "title": "Why React came and which problem wanted to solved",
     "excerpt": "Discover how React revolutionized web development and how it simplified the process of building user interfaces.",
     "date": "March 1, 2025",
-    "author": "You",
+    "author": "Giuseppe Adamo",
     "category": "React",
     "image": "https://ik.imagekit.io/7lqiq1zm3ks/New-Project--24-_HMR-sWUjB.jpg",
     "readTime": "5 min",
@@ -25,128 +25,178 @@
               "language": "javascript",
               "code": "// Attaching an event listener with jQuery (works across all browsers)\n$('#myButton').click(function() {\n  alert('Clicked!');\n});"
             }
-          ] 
+          ]
         },
         {
-            "title": "Why jQuery Lost Popularity",
-            "body": "jQuery was great at the time, but it lost popularity for different reasons, such as:\n- **Weight** – The library was very big, and including it in projects **negatively impacted performance**.\n- **Redundancy** – Many features jQuery provided are now **natively supported** across modern browsers.\n- **Missing structure** – No structured way to handle complex application state."
-          },
-          {
-            "title": "The Rise of Backbone.js and Knockout.js",
-            "body": "So, this is where **Backbone.js** and **Knockout.js** knocked at the door. Backbone came in 2010 with a new pattern philosophy, the **MVC pattern**:\n- **Model** – Represents the data or state of the application (e.g., objects, collections).\n- **View** – Represents the UI or presentation layer (HTML, CSS).\n- **Controller** – Manages the interaction between the Model and View, handling user input to update the View.\n\nIn this case, we can see a clear **separation of concerns**, making the application more **modular, scalable, and easier to maintain** solving in this way the main issue JQuery had.\n\nHowever, Backbone still had some shortcomings:\n\n- **No built-in state management** – Required extra libraries for state handling.\n- **No two-way data binding** – Developers had to manually sync the Model and View.\n- **Tight coupling** – **Views and Models were tightly coupled**. If you changed something in the View, you also had to manually update the Model.",
-            "codeBlocks": [
-              {
-                "title": "Backbone.js Example",
-                "language": "javascript",
-                "code": "// Define a Model\nvar TodoItem = Backbone.Model.extend({\n  defaults: {\n    title: '',\n    completed: false\n  },\n  toggle: function() {\n    this.set('completed', !this.get('completed'));\n  }\n});\n\n// Define a Collection\nvar TodoList = Backbone.Collection.extend({\n  model: TodoItem,\n  \n  completed: function() {\n    return this.filter(function(todo) {\n      return todo.get('completed');\n    });\n  },\n  \n  remaining: function() {\n    return this.without.apply(this, this.completed());\n  }\n});\n\n// Define a View\nvar TodoView = Backbone.View.extend({\n  tagName: 'li',\n  template: _.template($('#item-template').html()),\n  \n  events: {\n    'click .toggle': 'toggleCompleted',\n    'dblclick .view': 'edit',\n    'click .destroy': 'clear'\n  },\n  \n  initialize: function() {\n    this.listenTo(this.model, 'change', this.render);\n    this.listenTo(this.model, 'destroy', this.remove);\n  },\n  \n  render: function() {\n    this.$el.html(this.template(this.model.toJSON()));\n    this.$el.toggleClass('completed', this.model.get('completed'));\n    return this;\n  },\n  \n  toggleCompleted: function() {\n    this.model.toggle();\n  },\n  \n  edit: function() {\n    this.$el.addClass('editing');\n    this.$('.edit').focus();\n  },\n  \n  clear: function() {\n    this.model.destroy();\n  }\n});"
-              }
-            ]
-          },
-          {
-            "title": "Knockout.js Enters the Scene",
-            "body": "This is where **Knockout.js** came in. It was created in the early 2010s and was great at solving the **data binding** issue. It introduced a new pattern philosophy, **MVVM (Model-View-ViewModel)**, which **decoupled the View and the Model**.\n\nThe **ViewModel** acted as a bridge between the View and the Model, allowing the View to **declaratively display data and automatically update when the data changed**.\n\nWith Knockout.js, we moved from an **imperative** way of programming to a **declarative** one, thanks to the **observable feature** that enabled automatic UI updates.\n\n**In what Knockout.js falls short:**\n\n- **Performance**: Two-way data binding in large applications was causing some performance issues.\n- **Scalability**: It doesn't have built-in tools for structuring large applications and lacks modularization between components.\n- **Integration**: Knockout.js can be harder to integrate with other modern tools or libraries, limiting key features like routing, state management, form management, etc.",
-            "codeBlocks": [
-              {
-                "title": "Knockout.js Example - JavaScript",
-                "language": "javascript",
-                "code": "// Define the ViewModel\nfunction TodoViewModel() {\n  var self = this;\n  \n  // Observable for single form input\n  self.newTodoText = ko.observable('');\n  \n  // Observable array for the list of todos\n  self.todos = ko.observableArray([]);\n  \n  // Add a new todo\n  self.addTodo = function() {\n    if (self.newTodoText().trim() !== '') {\n      self.todos.push({\n        title: self.newTodoText(),\n        completed: ko.observable(false)\n      });\n      self.newTodoText(''); // Clear the input\n    }\n  };\n  \n  // Remove a todo\n  self.removeTodo = function(todo) {\n    self.todos.remove(todo);\n  };\n  \n  // Computed observable for completed todos\n  self.completedTodos = ko.computed(function() {\n    return ko.utils.arrayFilter(self.todos(), function(todo) {\n      return todo.completed();\n    });\n  });\n  \n  // Computed observable for remaining todos\n  self.remainingTodos = ko.computed(function() {\n    return ko.utils.arrayFilter(self.todos(), function(todo) {\n      return !todo.completed();\n    });\n  });\n}\n\n// Apply bindings\nko.applyBindings(new TodoViewModel());"
-              },
-              {
-                "title": "Knockout.js Example - HTML",
-                "language": "html",
-                "code": "<div id=\"todo-app\">\n  <form data-bind=\"submit: addTodo\">\n    <input data-bind=\"value: newTodoText\" placeholder=\"What needs to be done?\">\n    <button type=\"submit\">Add</button>\n  </form>\n  \n  <ul data-bind=\"foreach: todos\">\n    <li>\n      <input type=\"checkbox\" data-bind=\"checked: completed\">\n      <span data-bind=\"text: title, css: { 'completed': completed }\"></span>\n      <button data-bind=\"click: $parent.removeTodo\">Delete</button>\n    </li>\n  </ul>\n  \n  <div>\n    <span data-bind=\"text: remainingTodos().length\"></span> items left\n  </div>\n</div>"
-              }
-            ]
-          },
-          {
-            "title": "The Rise of AngularJS",
-            "body": "**So, before React, it's time for AngularJS to come in to the scene.** AngularJS was a pioneering JavaScript framework that helped open the doors for React to come in. Here are the main features of Angular that solve, in part, the shortcomings of Knockout.js:\n\n- **Full framework** with everything from templating to routing.\n- **Two-way data binding** out of the box.\n- **Component-based architecture** – introduced a modular architecture allowing developers to separate their application's components.\n- **Dependency injection** for better scalability and modularity.\n- **Community and Support** – with a large community backing up."
-          },
-          {
-            "title": "",
-            "body": ""
-          }
-        ],
-        "conclusion": ""
-      }
-  },
-  {
-    "id": 2,
-    "title": "Building Responsive UIs with Material UI",
-    "excerpt": "Discover how to create beautiful, responsive user interfaces using Material UI components.",
-    "date": "February 15, 2025",
-    "author": "You",
-    "category": "UI/UX",
-    "image": "https://ik.imagekit.io/7lqiq1zm3ks/1_-Ijet6kVJqGgul6adezDLQ_PT9xUHRJW.png",
-    "readTime": "7 min",
-    "content": {
-      "introduction": "React Hooks revolutionized the way we write React components by allowing us to use state and other React features without writing a class.",
-      "sections": [
-        {
-          "title": "Understanding useState",
-          "body": "The useState hook allows functional components to manage local state. Let's dive into a practical example..."
+          "title": "Why jQuery Lost Popularity",
+          "body": "jQuery was great at the time, but it lost popularity for different reasons, such as:\n- **Weight** – The library was very big, and including it in projects **negatively impacted performance**.\n- **Redundancy** – Many features jQuery provided are now **natively supported** across modern browsers.\n- **Missing structure** – No structured way to handle complex application state."
         },
         {
-          "title": "useEffect: Managing Side Effects",
-          "body": "With useEffect, you can perform side effects in functional components, replacing lifecycle methods like componentDidMount and componentDidUpdate.",
+          "title": "The Rise of Backbone.js and Knockout.js",
+          "body": "So, this is where **Backbone.js** and **Knockout.js** knocked at the door. Backbone came in 2010 with a new pattern philosophy, the **MVC pattern**:\n- **Model** – Represents the data or state of the application (e.g., objects, collections).\n- **View** – Represents the UI or presentation layer (HTML, CSS).\n- **Controller** – Manages the interaction between the Model and View, handling user input to update the View.\n\nIn this case, we can see a clear **separation of concerns**, making the application more **modular, scalable, and easier to maintain** solving in this way the main issue JQuery had.\n\nHowever, Backbone still had some shortcomings:\n\n- **No built-in state management** – Required extra libraries for state handling.\n- **No two-way data binding** – Developers had to manually sync the Model and View.\n- **Tight coupling** – **Views and Models were tightly coupled**. If you changed something in the View, you also had to manually update the Model.",
           "codeBlocks": [
             {
-              "title": "Basic useState Example",
-              "language": "typescript",
-              "code": "import React, { useState } from 'react';\n\nconst Counter = () => {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <p>You clicked {count} times</p>\n      <button onClick={() => setCount(count + 1)}>\n        Click me\n      </button>\n    </div>\n  );\n};"
+              "title": "Backbone.js Example",
+              "language": "javascript",
+              "code": "// Define a Model\nvar TodoItem = Backbone.Model.extend({\n  defaults: {\n    title: '',\n    completed: false\n  },\n  toggle: function() {\n    this.set('completed', !this.get('completed'));\n  }\n});\n\n// Define a Collection\nvar TodoList = Backbone.Collection.extend({\n  model: TodoItem,\n  \n  completed: function() {\n    return this.filter(function(todo) {\n      return todo.get('completed');\n    });\n  },\n  \n  remaining: function() {\n    return this.without.apply(this, this.completed());\n  }\n});\n\n// Define a View\nvar TodoView = Backbone.View.extend({\n  tagName: 'li',\n  template: _.template($('#item-template').html()),\n  \n  events: {\n    'click .toggle': 'toggleCompleted',\n    'dblclick .view': 'edit',\n    'click .destroy': 'clear'\n  },\n  \n  initialize: function() {\n    this.listenTo(this.model, 'change', this.render);\n    this.listenTo(this.model, 'destroy', this.remove);\n  },\n  \n  render: function() {\n    this.$el.html(this.template(this.model.toJSON()));\n    this.$el.toggleClass('completed', this.model.get('completed'));\n    return this;\n  },\n  \n  toggleCompleted: function() {\n    this.model.toggle();\n  },\n  \n  edit: function() {\n    this.$el.addClass('editing');\n    this.$('.edit').focus();\n  },\n  \n  clear: function() {\n    this.model.destroy();\n  }\n});"
+            }
+          ]
+        },
+        {
+          "title": "Knockout.js Enters the Scene",
+          "body": "This is where **Knockout.js** came in. It was created in the early 2010s and was great at solving the **data binding** issue. It introduced a new pattern philosophy, **MVVM (Model-View-ViewModel)**, which **decoupled the View and the Model**.\n\nThe **ViewModel** acted as a bridge between the View and the Model, allowing the View to **declaratively display data and automatically update when the data changed**.\n\nWith Knockout.js, we moved from an **imperative** way of programming to a **declarative** one, thanks to the **observable feature** that enabled automatic UI updates.\n\n**In what Knockout.js falls short:**\n\n- **Performance**: Two-way data binding in large applications was causing some performance issues.\n- **Scalability**: It doesn't have built-in tools for structuring large applications and lacks modularization between components.\n- **Integration**: Knockout.js can be harder to integrate with other modern tools or libraries, limiting key features like routing, state management, form management, etc.",
+          "codeBlocks": [
+            {
+              "title": "Knockout.js Example - JavaScript",
+              "language": "javascript",
+              "code": "// Define the ViewModel\nfunction TodoViewModel() {\n  var self = this;\n  \n  // Observable for single form input\n  self.newTodoText = ko.observable('');\n  \n  // Observable array for the list of todos\n  self.todos = ko.observableArray([]);\n  \n  // Add a new todo\n  self.addTodo = function() {\n    if (self.newTodoText().trim() !== '') {\n      self.todos.push({\n        title: self.newTodoText(),\n        completed: ko.observable(false)\n      });\n      self.newTodoText(''); // Clear the input\n    }\n  };\n  \n  // Remove a todo\n  self.removeTodo = function(todo) {\n    self.todos.remove(todo);\n  };\n  \n  // Computed observable for completed todos\n  self.completedTodos = ko.computed(function() {\n    return ko.utils.arrayFilter(self.todos(), function(todo) {\n      return todo.completed();\n    });\n  });\n  \n  // Computed observable for remaining todos\n  self.remainingTodos = ko.computed(function() {\n    return ko.utils.arrayFilter(self.todos(), function(todo) {\n      return !todo.completed();\n    });\n  });\n}\n\n// Apply bindings\nko.applyBindings(new TodoViewModel());"
+            },
+            {
+              "title": "Knockout.js Example - HTML",
+              "language": "html",
+              "code": "<div id=\"todo-app\">\n  <form data-bind=\"submit: addTodo\">\n    <input data-bind=\"value: newTodoText\" placeholder=\"What needs to be done?\">\n    <button type=\"submit\">Add</button>\n  </form>\n  \n  <ul data-bind=\"foreach: todos\">\n    <li>\n      <input type=\"checkbox\" data-bind=\"checked: completed\">\n      <span data-bind=\"text: title, css: { 'completed': completed }\"></span>\n      <button data-bind=\"click: $parent.removeTodo\">Delete</button>\n    </li>\n  </ul>\n  \n  <div>\n    <span data-bind=\"text: remainingTodos().length\"></span> items left\n  </div>\n</div>"
+            }
+          ]
+        },
+        {
+          "title": "The Rise of AngularJS",
+          "body": "**So, before React, it's time for AngularJS to come in to the scene.** AngularJS was a pioneering JavaScript framework that helped open the doors for React to come in. Here are the main features of Angular that solve, in part, the shortcomings of Knockout.js:\n\n- **Full framework** with everything from templating to routing.\n- **Two-way data binding** out of the box.\n- **Component-based architecture** – introduced a modular architecture allowing developers to separate their application's components.\n- **Dependency injection** for better scalability and modularity.\n- **Community and Support** – with a large community backing up."
+        },
+        {
+          "title": "The Decline of AngularJS",
+          "body": "But as everything with the time and with the landscape of web development which continually evolves, Angular declined, and there are certain aspects that contributed to its decline:\n\n- **Performance** – Particularly in large scale apps with complex data-binding had severe performance issues\n- **Complexity** – Introducing more advanced concepts made Angular hard to learn, specially for beginners\n- **Difficult debugging** – The framework's **implicit dependency injection** and digest cycle made it hard to debug issues, as developers often had to inspect deep internal mechanisms.\n- **Tightly Coupled Components** – The $scope object was used to bind data between the View and the Controller, but it introduced a lot of complexity"
+        },
+        {
+          "title": "The Emergence of React",
+          "body": "Sooo, finally, here we are! It’s 2013, and **React** is developed by Facebook (now Meta). Created by **Jordan Walke** to improve and maintain the news feed on Meta, it was later shipped to the public as open-source. *(Check out the documentary on YouTube: [React Documentary](https://www.youtube.com/watch?v=8pDqJVdNa44&pp=ygURUmVhY3QgZG9jdWVtdG5hcnk%3D)).*\n\nWith React, we got a **component-based architecture** and a **declarative way** that solved many of AngularJS’s shortcomings at the time:\n\n- **Performance** – By introducing the **Virtual DOM**, React optimized rendering by updating only the necessary parts of the UI.\n- **State management** – With **one-way data flow**, React made state management easier and reduced headaches.\n- **Easier to learn and code** – With **JSX**, it became much easier to program in a **declarative way**. Just describe what you need, and React takes care of it, without the need to manually manipulate the DOM.\n- **Component-based architecture** – This new approach allowed developers to create **reusable components**, making apps more scalable.\n- **Better ecosystem** – React quickly gained **great community support** and a growing ecosystem of tools and libraries.",
+          "codeBlocks": [
+            {
+              "title": "AngularJS Example (Two-Way Data Binding)",
+              "language": "html",
+              "code": "<div ng-app=\"myApp\" ng-controller=\"myCtrl\">\n  <input type=\"text\" ng-model=\"name\">\n  <p>Hello, {{ name }}!</p>\n</div>\n\n<script>\n  angular.module('myApp', [])\n    .controller('myCtrl', function($scope) {\n      $scope.name = 'Angular';\n    });\n</script>"
+            },
+            {
+              "title": "React Example (One-Way Data Flow)",
+              "language": "javascript",
+              "code": "import React, { useState } from \"react\";\n\nconst App = () => {\n  const [name, setName] = useState(\"React\");\n\n  return (\n    <div>\n      <input type=\"text\" value={name} onChange={(e) => setName(e.target.value)} />\n      <p>Hello, {name}!</p>\n    </div>\n  );\n};\n\nexport default App;"
+            },
+            {
+              "title": "AngularJS Example (Digest Cycle Performance Issue)",
+              "language": "html",
+              "code": "<div ng-app=\"myApp\" ng-controller=\"myCtrl\">\n  <button ng-click=\"count = count + 1\">Click me</button>\n  <p>Count: {{ count }}</p>\n</div>\n\n<script>\n  angular.module('myApp', [])\n    .controller('myCtrl', function($scope) {\n      $scope.count = 0;\n    });\n</script>"
+            },
+            {
+              "title": "React Example (Virtual DOM Optimization)",
+              "language": "javascript",
+              "code": "import React, { useState } from \"react\";\n\nconst Counter = () => {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <button onClick={() => setCount(count + 1)}>Click me</button>\n      <p>Count: {count}</p>\n    </div>\n  );\n};\n\nexport default Counter;"
+            },
+            {
+              "title": "AngularJS Example (HTML-Based Templating)",
+              "language": "html",
+              "code": "<div ng-app=\"myApp\" ng-controller=\"myCtrl\">\n  <ul>\n    <li ng-repeat=\"item in items\">{{ item }}</li>\n  </ul>\n</div>\n\n<script>\n  angular.module('myApp', [])\n    .controller('myCtrl', function($scope) {\n      $scope.items = ['Apple', 'Banana', 'Cherry'];\n    });\n</script>"
+            },
+            {
+              "title": "React Example (JSX for Better Readability)",
+              "language": "javascript",
+              "code": "import React from \"react\";\n\nconst App = () => {\n  const items = [\"Apple\", \"Banana\", \"Cherry\"];\n\n  return (\n    <ul>\n      {items.map((item, index) => (\n        <li key={index}>{item}</li>\n      ))}\n    </ul>\n  );\n};\n\nexport default App;"
             }
           ]
         }
       ],
-      "conclusion": "Hooks make React development more intuitive and reduce the complexity of your components."
+      "conclusion": "I hope this post gave you a better understanding of why React came into the world and which problem it aimed to solve. Knowing the roots of a technology sometimes makes it easier to dive deep and learn new things about it.\n\nHere is a great book by Tejas Kumar that covers this topic in more detail, which I highly recommend: *[Fluent React](https://www.oreilly.com/library/view/fluent-react/9781098138707/).* \nPeace, and see you in the next one!"
+    }
+  },
+  {
+    "id": 2,
+    "title": "WORK IN PROGRESS",
+    "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "date": "February 15, 2025",
+    "author": "You",
+    "category": "Software Architecture",
+    "image": "https://ik.imagekit.io/7lqiq1zm3ks/istockphoto-508408464-612x612_ChOJtU3Sf.jpg?updatedAt=1741369757470",
+    "readTime": "7 min",
+    "content": {
+      "introduction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "sections": [
+        {
+          "title": "Understanding useState",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "title": "..",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "codeBlocks": [
+            {
+              "title": "Basic useState Example",
+              "language": "typescript",
+              "code": "."
+            }
+          ]
+        }
+      ],
+      "conclusion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     }
   },
   {
     "id": 3,
-    "title": "JavaScript Array Methods Every Developer Should Know",
-    "excerpt": "Exploring powerful array methods like map, filter, reduce and how they can simplify your code.",
-    "date": "January 30, 2025",
+    "title": "WORK IN PROGRESS",
+    "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "date": "February 15, 2025",
     "author": "You",
-    "category": "JavaScript",
-    "image": "https://via.placeholder.com/800x400?text=JavaScript+Arrays",
-    "readTime": "4 min",
+    "category": "Javascript",
+    "image": "https://ik.imagekit.io/7lqiq1zm3ks/istockphoto-508408464-612x612_ChOJtU3Sf.jpg?updatedAt=1741369757470",
+    "readTime": "7 min",
     "content": {
-      "introduction": "React Hooks revolutionized the way we write React components by allowing us to use state and other React features without writing a class.",
+      "introduction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "sections": [
         {
           "title": "Understanding useState",
-          "body": "The useState hook allows functional components to manage local state. Let's dive into a practical example..."
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         },
         {
-          "title": "useEffect: Managing Side Effects",
-          "body": "With useEffect, you can perform side effects in functional components, replacing lifecycle methods like componentDidMount and componentDidUpdate."
+          "title": "..",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "codeBlocks": [
+            {
+              "title": "Basic useState Example",
+              "language": "typescript",
+              "code": "."
+            }
+          ]
         }
       ],
-      "conclusion": "Hooks make React development more intuitive and reduce the complexity of your components."
+      "conclusion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     }
   },
   {
     "id": 4,
-    "title": "Introduction to TypeScript for React Developers",
-    "excerpt": "Why TypeScript is worth learning and how it improves your React development experience.",
-    "date": "January 15, 2025",
+    "title": "WORK IN PROGRESS",
+    "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "date": "February 15, 2025",
     "author": "You",
-    "category": "TypeScript",
-    "image": "https://via.placeholder.com/800x400?text=TypeScript",
-    "readTime": "6 min",
+    "category": "React",
+    "image": "https://ik.imagekit.io/7lqiq1zm3ks/istockphoto-508408464-612x612_ChOJtU3Sf.jpg?updatedAt=1741369757470",
+    "readTime": "7 min",
     "content": {
-      "introduction": "React Hooks revolutionized the way we write React components by allowing us to use state and other React features without writing a class.",
+      "introduction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "sections": [
         {
           "title": "Understanding useState",
-          "body": "The useState hook allows functional components to manage local state. Let's dive into a practical example..."
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         },
         {
-          "title": "useEffect: Managing Side Effects",
-          "body": "With useEffect, you can perform side effects in functional components, replacing lifecycle methods like componentDidMount and componentDidUpdate."
+          "title": "..",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "codeBlocks": [
+            {
+              "title": "Basic useState Example",
+              "language": "typescript",
+              "code": "."
+            }
+          ]
         }
       ],
-      "conclusion": "Hooks make React development more intuitive and reduce the complexity of your components."
+      "conclusion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     }
   }
 ]

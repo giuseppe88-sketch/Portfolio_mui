@@ -111,6 +111,30 @@ export default function Navbar() {
               {" "}
               <Box sx={{ display: "flex" }}>
                 <Link
+                  to="introduction"
+                  smooth={true}
+                  duration={1000}
+                  onClick={() => handleClickLink("introduction")}
+                >
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      borderRadius: "10px",
+                      transition: "background-color 0.5s, color 0.3s", // Transition for background color and text color
+
+                      "&:hover": {
+                        backgroundColor: "#5f6e8833",
+                        color: "#B0B0B0",
+                      },
+                    }}
+                  >
+                    Home
+                  </Button>
+                </Link>
+                <Link
                   to="projects"
                   smooth={true}
                   duration={1000}
@@ -196,6 +220,7 @@ export default function Navbar() {
                     onClick={handleCloseNavMenu}
                     sx={{
                       my: 2,
+                      mr:2,
                       color: "white",
                       display: "block",
                       borderRadius: "10px",

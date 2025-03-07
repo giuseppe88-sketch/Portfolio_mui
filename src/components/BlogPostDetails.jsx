@@ -25,7 +25,7 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#1976d2",
+      main: "#1976",
     },
   },
   typography: {
@@ -187,7 +187,7 @@ const BlogPostDetail = () => {
               >
                 {section.title}
               </Typography>
-              <Typography variant="body1" paragraph>
+              <Typography variant="body1" paragraph sx={{ lineHeight: "32px" }}>
                 {formatText(section.body)}
               </Typography>
 

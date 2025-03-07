@@ -28,6 +28,8 @@ const BlogPostCard= ({
         display: 'flex',
         width:"90%",
         margin:"auto",
+        background:"rgba(252, 252, 252, 0.16)",
+        // background:"rgba(22, 28, 36, 0.9)",
         flexDirection: 'column',
         boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
