@@ -80,7 +80,7 @@ const Blog = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  fontWeight: 500,
+                  fontWeight: 600,
                   background: '#ffffff',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
