@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -76,6 +76,11 @@ export default function Navbar() {
                   display: { xs: "block", md: "none" },
                 }}
               >
+                <Link to="introduction" smooth={true} duration={1000}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">Home</Typography>
+                  </MenuItem>
+                </Link>
                 <Link to="about" smooth={true} duration={1000}>
                   <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">About me</Typography>
@@ -91,6 +96,11 @@ export default function Navbar() {
                     <Typography textAlign="center">Contact</Typography>
                   </MenuItem>
                 </Link>
+                <RouterLink to="/blog" style={{ textDecoration: "none" }}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" color="#000">Blog</Typography>
+                  </MenuItem>
+                </RouterLink>
               </Menu>
             </Box>
             <Typography
@@ -212,15 +222,12 @@ export default function Navbar() {
                   display: "flex",
                 }}
               >
-                <RouterLink
-                  to="/blog"
-                  style={{ textDecoration: "none" }}
-                >
+                <RouterLink to="/blog" style={{ textDecoration: "none" }}>
                   <Button
                     onClick={handleCloseNavMenu}
                     sx={{
                       my: 2,
-                      mr:2,
+                      mr: 2,
                       color: "white",
                       display: "block",
                       borderRadius: "10px",
