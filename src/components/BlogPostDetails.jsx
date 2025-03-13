@@ -38,6 +38,10 @@ const BlogPostDetail = () => {
   const [openCodeDialog, setOpenCodeDialog] = useState(false);
   const [selectedCodeBlock, setSelectedCodeBlock] = useState(null);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const post = blogPosts.find((p) => p.id === parseInt(id || "0"));
 
   if (!post) {
