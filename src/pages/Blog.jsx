@@ -41,7 +41,9 @@ const Blog = () => {
     'All',
     ...new Set(blogPosts.map((post) => post.category)),
   ];
-
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // Filter posts by category and search query
   const filteredPosts = blogPosts.filter((post) => 
     (selectedCategory === 'All' || post.category === selectedCategory) &&
