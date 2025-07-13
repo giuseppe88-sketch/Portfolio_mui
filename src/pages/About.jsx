@@ -172,14 +172,15 @@ export default function About() {
               journey to independence in my early 20s by living in London, then
               in Spain, then here in Berlin.
               <Box component="p" mt={2}>
-                Passionate about traveling and discovering new cultures, I am
-                now pursuing my passion to become a Software Developer.
+                Passionate about traveling and discovering new cultures, I now
+                build things that work and solve problems as a Software
+                Developer.
               </Box>
               <Box component="p" mt={2}>
                 In 2021, I graduated from CareerFoundry after completing an
-                8-month Bootcamp. Shortly after, I secured my first junior
+                8-month Bootcamp as Full-Stack developer. Shortly after, I secured my first junior
                 position at a cloud-based software solutions company, where I
-                worked for 2 years.
+                worked for 2 years. Currently now freelancing, continuing to grow my skills by building real-world applications
               </Box>
               <Box component="p" mt={2}>
                 Over those years, I've honed my skills as a front-end developer
