@@ -35,6 +35,18 @@ const projectsData = [
     technologies: ["React", "MongoDB", "Express", "Node.js", "DnD"],
   },
   {
+    id: 1,
+    title: "Devoc Mobile",
+    mobile: true,
+    description:
+      "Developed a modern cross-platform mobile app built with Expo SDK 53 and React Native 0.79.x, designed to connect clients with freelance developers for on-demand bookings and project collaborations.",
+    image:
+      "https://ik.imagekit.io/7lqiq1zm3ks/IMG_3623_z1tsxxxyn.png?updatedAt=1752424197193",
+    liveLink: "",
+    githubLink: "https://github.com/giuseppe88-sketch/devoc-mobile",
+    technologies: ["React 19", "Supabase", "TypeScript"],
+  },
+  {
     id: 2,
     title: "FRAPE Ocean_Scan",
     mobile: true,
