@@ -60,6 +60,18 @@ const projectsData = [
   },
   {
     id: 3,
+    title: "NovaFrame",
+    mobile: true,
+    description:
+      "Developed a simple Landing page for using Next.js and Tailwind CSS. ",
+    image:
+      "https://ik.imagekit.io/7lqiq1zm3ks/Screenshot%20from%202025-07-17%2021-58-03_qbOl1rBRq.png?updatedAt=1752782301438",
+    liveLink: "https://lpg-2ckg.vercel.app/",
+    githubLink: "",
+    technologies: ["Next.js", "Tailwind CSS"],
+  },
+  {
+    id: 4,
     title: "CBD Shop Application",
     description:
       "Here I have used React.js to build an application, in this case a CBD shop, where the user is able to info different products and adds them to the shop-cart.",
@@ -70,7 +82,7 @@ const projectsData = [
     technologies: ["React", "JavaScript", "CSS"],
   },
   {
-    id: 4,
+    id: 5,
     title: "Meet App",
     description:
       "Within this project, I build a serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique.",
@@ -81,7 +93,7 @@ const projectsData = [
     technologies: ["React", "PWA", "Serverless"],
   },
   {
-    id: 5,
+    id: 6,
     title: "Chat App",
     mobile: true,
     description:
