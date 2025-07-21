@@ -36,7 +36,7 @@ const projectsData = [
   },
   {
     id: 1,
-    title: "Devoc Mobile",
+    title: "Devoc Mobile - Booking App",
     mobile: true,
     description:
       "Developed a modern cross-platform mobile app built with Expo SDK 53 and React Native 0.79.x, designed to connect clients with freelance developers for on-demand bookings and project collaborations.",
@@ -81,17 +81,17 @@ const projectsData = [
     githubLink: "",
     technologies: ["React", "JavaScript", "CSS"],
   },
-  {
-    id: 5,
-    title: "Meet App",
-    description:
-      "Within this project, I build a serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique.",
-    image:
-      "https://ik.imagekit.io/7lqiq1zm3ks/meetappSS_saBcmV1gj.png?ik-sdk-version=javascript-1.4.3&updatedAt=1643993069749",
-    liveLink: "https://giuseppe88-sketch.github.io/meet/",
-    githubLink: "https://github.com/giuseppe88-sketch/meet",
-    technologies: ["React", "PWA", "Serverless"],
-  },
+  // {
+  //   id: 5,
+  //   title: "Meet App",
+  //   description:
+  //     "Within this project, I build a serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique.",
+  //   image:
+  //     "https://ik.imagekit.io/7lqiq1zm3ks/meetappSS_saBcmV1gj.png?ik-sdk-version=javascript-1.4.3&updatedAt=1643993069749",
+  //   liveLink: "https://giuseppe88-sketch.github.io/meet/",
+  //   githubLink: "https://github.com/giuseppe88-sketch/meet",
+  //   technologies: ["React", "PWA", "Serverless"],
+  // },
   {
     id: 6,
     title: "Chat App",
