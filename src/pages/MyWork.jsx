@@ -63,7 +63,7 @@ const projectsData = [
     title: "NovaFrame",
     mobile: true,
     description:
-      "Developed a simple Landing page for using Next.js and Tailwind CSS. ",
+      "Developed a simple Landing page using Next.js and Tailwind CSS. ",
     image:
       "https://ik.imagekit.io/7lqiq1zm3ks/Screenshot%20from%202025-07-17%2021-58-03_qbOl1rBRq.png?updatedAt=1752782301438",
     liveLink: "https://lpg-2ckg.vercel.app/",
@@ -103,6 +103,18 @@ const projectsData = [
     liveLink: "",
     githubLink: "https://github.com/giuseppe88-sketch/Chat-App",
     technologies: ["React Native", "Firebase", "Expo"],
+  },
+  {
+    id: 7,
+    title: "URL Analyzer",
+    mobile: false,
+    description:
+      "is a full-stack web application that allows users to submit a URL and receive a detailed analysis of its on-page SEO and technical characteristics. The application features a Go backend for high-performance analysis and a modern React frontend for a seamless user experience.",
+    image:
+      "https://ik.imagekit.io/7lqiq1zm3ks/Screenshot%20from%202025-07-22%2014-27-19_gvD_VxvIQ.png?updatedAt=1753187369005",
+    liveLink: "",
+    githubLink: "https://github.com/giuseppe88-sketch/url-analyzer",
+    technologies: ["React", "Go", "TypeScript", "Docker", "MySQL"],
   },
 ];
 
