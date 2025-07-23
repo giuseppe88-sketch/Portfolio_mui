@@ -53,7 +53,7 @@ const projectsData = [
     description:
       "Developed a mobile application that allows users to scan fish product barcodes and instantly access sustainability and environmental impact insights. The app integrates the OpenFoodFacts API to retrieve product details and incorporates pollution data analysis using Copernicus Marine satellite data.",
     image:
-      "https://ik.imagekit.io/7lqiq1zm3ks/IMG_2845_VI9vLNy6A.jpeg?updatedAt=1740996168373",
+      "https://ik.imagekit.io/7lqiq1zm3ks/IMG_3677_m3F8-40tw.png?updatedAt=1753274642722",
     liveLink: "",
     githubLink: "https://github.com/giuseppe88-sketch/frape",
     technologies: ["React Native", "REST API"],
